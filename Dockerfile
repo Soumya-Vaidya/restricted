@@ -1,6 +1,6 @@
 FROM python:alpine
 
-WORKDIR /Restricted
+WORKDIR /restricted
 
 COPY requirements.txt .
 

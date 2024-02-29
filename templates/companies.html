@@ -41,8 +41,8 @@
                         <div class="flex-grow-1">
                             <select name="active" id="active" class="form-select">
                                 <option value="True">Active</option>
-                                <option value="All">All</option>
                                 <option value="False">Inactive</option>
+                                <option value="All">All</option>
                             </select>
                         </div>
                         <div class="ms-2">
@@ -52,7 +52,7 @@
                 </form>
             </div>
             <div class="col-3">
-                <a href="{{ url_for('download_records', active=filter_active) }}" class="btn btn-success">
+                <a href="{{ url_for('download', active=filter_active) }}" class="btn btn-success">
                     Download Records
                 </a>
             </div>
@@ -69,12 +69,15 @@
         <table class="table table-bordered table-striped mt-4">
             <thead>
                 <tr>
+                    <th>ISIN Number</th>
                     <th>Company Name</th>
                     <th>Transaction Name</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Published Date</th>
                     <th>Comments</th>
+                    <th>Name of Person Informing</th>
+                    <th>Email</th>
                     <th>Date of Entry</th>
                     <th>Time of Entry</th>
                     <th>Date of End</th>
@@ -84,12 +87,15 @@
             <tbody>
                 {% for company in companies %}
                 <tr>
+                    <td>{{ company.ISIN_number }}</td>
                     <td>{{ company.company_name }}</td>
-                    <td>{{ company.transaction_name }}</td>
+                    <td>{{ company.transaction_type }}</td>
                     <td>{{ company.start_date }}</td>
                     <td>{{ company.end_date }}</td>
                     <td>{{ company.published_date }}</td>
                     <td>{{ company.comments }}</td>
+                    <td>{{ company.person_of_contact }}</td>
+                    <td>{{ company.person_email }}</td>
                     <td>{{ company.date_of_entry }}</td>
                     <td>{{ company.time_of_entry }}</td>
                     <td>{{ company.date_of_end }}</td>

@@ -1,4 +1,3 @@
-Company Name,Transaction Name,Start Date,End Date,Published Date,Comments,Date of Entry,Time of Entry,Date of End,Time of End
-Reliance,FPO,2024-02-16,None,None,,2024-02-29,11:40:39.609257,None,None
-Honasa,IPO,2024-02-09,2024-02-24,2024-02-23,,2024-02-29,11:41:28.955950,2024-02-29 00:00:00,11:41:44.254737
-Reliance,lala,2024-02-16,2024-02-24,2024-02-09,,2024-02-29,11:45:30.588995,2024-02-29 00:00:00,11:45:54.422261
+ISIN Number,Company Name,Transaction Type,Start Date,End Date,Published Date,Name of Person Informing, Contact Individuals,Comments,Date of Entry,Time of Entry,Date of End,Time of End
+12jh223782378,Reliance,FPO,2024-02-22,None,None,ss,ss@d,,2024-02-29,20:22:14,None,None
+sdas,Honasa,aa,2024-02-10,None,None,as,s@d,qw,2024-02-29,20:22:49,None,None

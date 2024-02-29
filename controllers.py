@@ -45,8 +45,8 @@ def view_company():
     )
 
 
-@app.route("/download-records", methods=["GET"])
-def download_records():
+@app.route("/download", methods=["GET"])
+def download():
     filter_active = request.args.get("active", default="True", type=str)
 
     if filter_active.lower() == "true":
@@ -56,9 +56,11 @@ def download_records():
     else:
         companies = Company.query.all()
 
-    csv_content = "Company Name,Transaction Name,Start Date,End Date,Published Date,Comments,Date of Entry,Time of Entry,Date of End,Time of End\n"
+    csv_content = "ISIN Number,Company Name,Transaction Type,Start Date,End Date,Published Date,Name of Person Informing, Contact Individuals,Comments,Date of Entry,Time of Entry,Date of End,Time of End\n"
     for company in companies:
-        csv_content += f"{company.company_name},{company.transaction_name},{company.start_date},{company.end_date},{company.published_date},{company.comments},{company.date_of_entry},{company.time_of_entry},{company.date_of_end},{company.time_of_end}\n"
+        time_of_entry = str(company.time_of_entry)[0:8]
+        time_of_end = str(company.time_of_end)[0:8]
+        csv_content += f"{company.ISIN_number},{company.company_name},{company.transaction_type},{company.start_date},{company.end_date},{company.published_date},{company.person_of_contact},{company.person_email},{company.comments},{company.date_of_entry},{time_of_entry},{company.date_of_end},{time_of_end}\n"
 
     with open("temp_records.csv", "w") as file:
         file.write(csv_content)
@@ -74,18 +76,23 @@ def add_company():
     if request.method == "GET":
         return render_template("add_company.html")
     elif request.method == "POST":
+        ISIN_number = request.form["ISIN_number"]
         company_name = request.form["company_name"]
-        transaction_name = request.form["transaction_name"]
+        transaction_type = request.form["transaction_type"]
+        person_of_contact = request.form["person_of_contact"]
+        person_email = request.form["person_email"]
         start_date_str = request.form["start_date"]
         start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
         comments = request.form["comments"]
-
         date_of_entry = datetime.now(IST).date()
         time_of_entry = datetime.now(IST).time()
 
         company = Company(
+            ISIN_number=ISIN_number,
             company_name=company_name,
-            transaction_name=transaction_name,
+            transaction_type=transaction_type,
+            person_of_contact=person_of_contact,
+            person_email=person_email,
             start_date=start_date,
             comments=comments,
             date_of_entry=date_of_entry,
@@ -102,7 +109,7 @@ def end_company():
     if request.method == "GET":
         companies = Company.query.filter_by(active=True).all()
         company_choices = [
-            (company.company_id, f"{company.company_name} - {company.transaction_name}")
+            (company.company_id, f"{company.company_name} - {company.transaction_type}")
             for company in companies
         ]
         return render_template("end_company.html", company_choices=company_choices)

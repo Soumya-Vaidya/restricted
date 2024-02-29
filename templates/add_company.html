@@ -13,8 +13,8 @@
         <label for="company_name">Company Name:</label><br>
         <input type="text" id="company_name" name="company_name" required><br><br>
 
-        <label for="transaction_name">Transaction Name:</label><br>
-        <input type="text" id="transaction_name" name="transaction_name" required><br><br>
+        <label for="transaction_type">Transaction Name:</label><br>
+        <input type="text" id="transaction_type" name="transaction_type" required><br><br>
 
         <label for="start_date">Start Date:</label><br>
         <input type="date" id="start_date" name="start_date" required><br><br>
@@ -61,16 +61,36 @@
     </nav>
     <div class="container">
         <h1>Company Transaction Form</h1>
+        <br>
         <form action="/add" method="POST">
-            <label for="company_name">Company Name:</label><br>
-            <input type="text" id="company_name" name="company_name" required><br><br>
-
-            <label for="transaction_name">Transaction Name:</label><br>
-            <input type="text" id="transaction_name" name="transaction_name" required><br><br>
-
-            <label for="start_date">Start Date:</label><br>
-            <input type="date" id="start_date" name="start_date" required><br><br>
-
+            <div class="row">
+                <div class="col-4">
+                    <label for="company_name">Company Name:</label><br>
+                    <input type="text" id="company_name" name="company_name" required><br><br>
+                </div>
+                <div class="col-4">
+                    <label for="ISIN_number">ISIN Number:</label><br>
+                    <input type="text" id="ISIN_number" name="ISIN_number" required><br><br>
+                </div>
+                <div class="col-4">
+                    <label for="transaction_type">Transaction Type:</label><br>
+                    <input type="text" id="transaction_type" name="transaction_type" required><br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label for="start_date">Start Date:</label><br>
+                    <input type="date" id="start_date" name="start_date" required><br><br>
+                </div>
+                <div class="col-4">
+                    <label for="person_of_contact">Name of Person Informing:</label><br>
+                    <input type="text" id="person_of_contact" name="person_of_contact" required><br><br>
+                </div>
+                <div class="col-4">
+                    <label for="person_email">Contact Details:</label><br>
+                    <input type="email" id="person_email" name="person_email" required><br><br>
+                </div>
+            </div>
             <label for="comments">Comments:</label><br>
             <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
 
